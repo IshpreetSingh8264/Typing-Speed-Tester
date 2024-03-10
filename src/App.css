@@ -82,6 +82,7 @@
 .quotes {
     background-color: #333333; /* Dark gray */
     color: #ffffff; /* White text */
+    overflow: auto;
     height: 100px !important;
 }
 
@@ -101,6 +102,18 @@
     font-size: 18px;
     margin: 0 auto; /* Center the keyboard horizontally */
 }
+
+@media (max-width: 768px) {
+    /* Styles for smaller screens */
+    .keyboard {
+        display: none; /* Hide the keyboard for phones */
+    }
+
+    /* Add styles for other elements if needed */
+}
+
+
+
 .text-area:disabled {
     color: #aaa; /* Light gray for disabled text */
 }
