@@ -1,0 +1,205 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Overall container styles */
+.text-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    width: 100%;
+    background-color: #333333; /* Dark gray */
+    color: #ffffff; /* White text */
+    text-align: center;
+}
+
+/* Speed test container styles */
+.speed-test-container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #222222; /* Dark background */
+}
+
+.speed-test-container p {
+    margin: 10px 0;
+}
+
+.speed-test-container button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.speed-test-container button:hover {
+    background-color: #0056b3;
+}
+
+/* Text area styles */
+.text-area {
+    width: 100%;
+    min-height: 200px;
+    background-color: #222222; /* Dark background */
+    color: #ffffff; /* White text */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 25px;
+    line-height: 1.5;
+    resize: vertical;
+
+}
+
+.text-area:focus {
+    outline: none;
+    border-color: #007bff;
+}
+.button-large{
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    margin: 5px;
+    border: none;
+    width: 250px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+
+
+/* Quote section styles (unchanged) */
+.quotes {
+    background-color: #333333; /* Dark gray */
+    color: #ffffff; /* White text */
+    height: 100px !important;
+}
+
+/* Keyboard container styles */
+.keyboard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    width: fit-content;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    background-color: #222222; /* Dark background */
+    color: #ffffff; /* White text */
+    text-align: center;
+    font-size: 18px;
+    margin: 0 auto; /* Center the keyboard horizontally */
+}
+.text-area:disabled {
+    color: #aaa; /* Light gray for disabled text */
+}
+.keyboard-outer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    width: auto;
+    border: 1px solid #ccc;
+    background-color: #222222; /* Dark background */
+    color: #ffffff; /* White text */
+    text-align: center;
+    font-size: 18px;
+    margin: 0 auto; /* Center the keyboard horizontally */
+}
+
+/* Keyboard row styles */
+.keyboard-row {
+    display: flex;
+    flex-direction: row;
+}
+
+/* Style to remove background color for special keys */
+.no-bg {
+    background-color: transparent !important;
+}
+
+/* Hover effect for keys */
+.keyboard-key:hover {
+    background-color: #444444; /* Darker gray */
+    color: #ffffff; /* White text */
+    transition: 0.3s;
+}
+
+/* Style for active key */
+.active {
+    background-color: #a96c25 !important; /* Brown */
+    color: #ffffff; /* White text */
+}
+
+/* Base styles for all keys */
+.keyboard-key {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    height: 40px; /* Reduced height for smaller keyboard */
+    width: 40px; /* Reduced width for smaller keyboard */
+    background-color: #333333; /* Dark gray */
+    color: #ffffff; /* White text */
+    margin: 5px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* Double width key (like Enter) */
+.double-width {
+    width: 90px; /* Adjusted width based on new key size */
+}
+
+/* Spacebar key */
+.spacebar {
+    width: 230px; /* Adjusted width based on new key size */
+}
+
+/* Larger key size for specific keys (like Shift) */
+.larger-keys {
+    width: 55px; /* Adjusted width based on new key size */
+}
+
+/* Margin for bottom row */
+.margin-bottom-row {
+    margin-bottom: 25px;
+}
+
+/* Margin adjustments for specific keys */
+.margin-left {
+    margin-left: 50px; /* Adjusted margin based on new key size */
+}
+
+@media (max-width: 768px) {
+    /* Styles for smaller screens */
+    .keyboard-key {
+        width: 35px;
+        height: 35px;
+    }
+
+    .spacebar {
+        width: 180px;
+    }
+
+    .larger-keys {
+        width: 50px;
+    }
+
+    .margin-left, .margin-right {
+        margin: 30px;
+    }
+}
