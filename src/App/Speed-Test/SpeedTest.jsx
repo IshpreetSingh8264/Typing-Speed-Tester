@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-const SpeedTest = ({ text, disableKeys, errors,quote }) => {
+const SpeedTest = ({ text, disableKeys, errors, quote }) => {
   const [startTime, setStartTime] = useState(null);
   const [typingSpeed, setTypingSpeed] = useState(0); // State for CPM (updated live)
   const [wpm, setWpm] = useState(0); // State for WPM (updated after test)
@@ -28,48 +28,54 @@ const SpeedTest = ({ text, disableKeys, errors,quote }) => {
       const liveCpm = Math.round((newlyTypedChars / elapsedTime) * 60);
 
       setTypingSpeed(liveCpm);
-      // handleCalculateWpm();
+      handleCalculateWpm();
 
       previousTypedChars.current = currentTypedChars;
 
     }
   }, [startTime, disableKeys, text]);
-useEffect(() => {
-  if (disableKeys) {
-    handleCalculateWpm(); // Calculate WPM when test is completed
-  }
-}, [startTime, disableKeys]);
+  useEffect(() => {
+    if (disableKeys) {
+      handleCalculateWpm(); // Calculate WPM when test is completed
+    }
+  }, [startTime, disableKeys]);
   // Calculate WPM and accuracy after test completion
-// Calculate WPM and accuracy after test completion
-useEffect(() => {
-  if (text.trim().length === quote.trim().length) {
-    console.log('text:', text);
-  }
-}, [text, disableKeys, quote]);
+  // Calculate WPM and accuracy after test completion
+  useEffect(() => {
+    if (text.trim().length === quote.trim().length) {
+      console.log('text:', text);
+    }
+  }, [text, disableKeys, quote]);
 
 
-const handleCalculateWpm = () => {
-  if (startTime && !disableKeys) {
-    const endTime = Date.now();
-    const totalTime = (endTime - startTime) / 1000;
+  const handleCalculateWpm = () => {
+    if (!disableKeys && quote) {
+      const words = quote.trim().split(/\s+/).filter(word => word.match(/^[a-zA-Z]+$/)); // Filter punctuation and special characters
+      const remainingWordCount = words.length;
 
-    const typedChars = text.trim().length;
-    const correctChars = typedChars - errors;
-    const cpm = Math.round((correctChars / totalTime) * 60);
+      const endTime = Date.now();
+      const totalTime = Math.max(1, (endTime - startTime) / 1000); // Ensure totalTime is at least 1 second to avoid division by zero
 
-    const words = text.trim().split(/\s+/).filter(word => word.match(/^[a-zA-Z]+$/)); // Filter punctuation and special characters
-    const totalWordCount = words.length;
-    const averageWordLength = totalWordCount ? words.reduce((sum, word) => sum + word.length, 0) / totalWordCount : 1;
+      const estimatedTypedChars = text.trim().length;
+      const estimatedCorrectChars = estimatedTypedChars - errors;
 
-    const wpm = Math.round(cpm / averageWordLength);
-    setWpm(wpm);
+      const estimatedCpm = Math.round((estimatedTypedChars / totalTime) * 60);
+      const averageWordLength = remainingWordCount ? words.reduce((sum, word) => sum + word.length, 0) / remainingWordCount : 1;
 
-    const accuracy = Math.round((correctChars / typedChars) * 10000) / 100;
-    setAccuracy(accuracy);
-  }
-};
+      const estimatedWpm = Math.round((estimatedCpm / averageWordLength));
+      setWpm(estimatedWpm);
 
-  
+      const accuracy = Math.round((estimatedCorrectChars / estimatedTypedChars) * 10000) / 100;
+      setAccuracy(accuracy);
+    }
+  }; const handleRestartTest = () => {
+
+    window.location.reload();
+
+  };
+
+
+
   return (
     <div className="speed-test-container">
       {/* <p>Current Typing Speed: {typingSpeed} CPM</p> */}
@@ -78,6 +84,7 @@ const handleCalculateWpm = () => {
       <button onClick={handleCalculateWpm} disabled={disableKeys}>
         Calculate Accurate WPM
       </button>
+      <button className='margin-left' onClick={handleRestartTest} >Restart Test</button>
     </div>
   );
 };

@@ -65,6 +65,7 @@ function App() {
           <ul>
             <li>Please complete the full test for an accurate result</li>
             <li>If the WPM is not updated automatically, you may click the "Calculate WPM" button</li>
+            <li>If you want to restart the test, press the restart button or reload the site</li>
           </ul>
           <Button variant="primary" onClick={handleStartTest}>Start Test</Button>
         </div>
