@@ -66,9 +66,9 @@ const Quotes = ({ text, disableKeys, setErrorCount }) => {
   }, [disableKeys, text, quote, setErrorCount]);
 
   return (
-    <div className='text-area quotes'>
-      {renderQuote()}
-    </div>
+    <div className='text-area quotes' onCopy={(e) => e.preventDefault()} onCut={(e) => e.preventDefault()} onPaste={(e) => e.preventDefault()} onSelect={(e) => e.preventDefault()}>
+    {renderQuote()}
+  </div>
   );
 };
 

@@ -49,26 +49,23 @@ const SpeedTest = ({ text, disableKeys, errors, quote }) => {
 
 
   const handleCalculateWpm = () => {
+
     if (!disableKeys && quote) {
       const words = quote.trim().split(/\s+/).filter(word => word.match(/^[a-zA-Z]+$/)); // Filter punctuation and special characters
       const remainingWordCount = words.length;
-
       const endTime = Date.now();
       const totalTime = Math.max(1, (endTime - startTime) / 1000); // Ensure totalTime is at least 1 second to avoid division by zero
-
       const estimatedTypedChars = text.trim().length;
       const estimatedCorrectChars = estimatedTypedChars - errors;
-
       const estimatedCpm = Math.round((estimatedTypedChars / totalTime) * 60);
       const averageWordLength = remainingWordCount ? words.reduce((sum, word) => sum + word.length, 0) / remainingWordCount : 1;
-
       const estimatedWpm = Math.round((estimatedCpm / averageWordLength));
       setWpm(estimatedWpm);
-
       const accuracy = Math.round((estimatedCorrectChars / estimatedTypedChars) * 10000) / 100;
       setAccuracy(accuracy);
     }
-  }; const handleRestartTest = () => {
+  };
+  const handleRestartTest = () => {
 
     window.location.reload();
 
